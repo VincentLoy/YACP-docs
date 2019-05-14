@@ -16,13 +16,13 @@ let gulp = require('gulp'),
 const JS_DEMO_FILES = [
     // libs
     './node_modules/basiclightbox/dist/basicLightbox.min.js',
-    './demo/js/app.js',
+    './assets/js/app.js',
     // custom
 ];
 
 
 gulp.task('build:demo:scss', function () {
-    return gulp.src('./demo/styles/scss/style.scss')
+    return gulp.src('./assets/styles/scss/style.scss')
         .pipe(sass({
             outputStyle: 'compressed',
             precision: 10
@@ -30,7 +30,7 @@ gulp.task('build:demo:scss', function () {
         .pipe(cssCompressor({
             restructure: false,
         }))
-        .pipe(gulp.dest('demo/styles'));
+        .pipe(gulp.dest('assets/styles'));
 });
 
 gulp.task('build:demo:es6', function () {
@@ -41,7 +41,7 @@ gulp.task('build:demo:es6', function () {
             presets: ['@babel/env']
         }),
         jsCompressor(),
-        gulp.dest('demo/js')
+        gulp.dest('assets/js')
     );
 });
 
@@ -57,9 +57,9 @@ gulp.task('serve:demo', ['build:demo:scss', 'build:demo:es6'], function () {
     });
 
     gulp.watch('./index.html').on('change', reload);
-    gulp.watch('./demo/js/app.js', ['build:demo:es6'])
+    gulp.watch('./assets/js/app.js', ['build:demo:es6'])
         .on('change', reload);
-    gulp.watch('./demo/styles/scss/**/*', ['build:demo:scss'])
+    gulp.watch('./assets/styles/scss/**/*', ['build:demo:scss'])
         .on('change', reload);
 });
 
