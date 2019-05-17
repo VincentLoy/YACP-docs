@@ -120,6 +120,12 @@ header {
     font-size: 25px;
     margin-right: 10px;
   }
+
+  &.-mr-small {
+    @media screen and (min-width: $bp) {
+      margin-right: $spacing;
+    }
+  }
 }
 
 .yacp-features-section {
